@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1' />
+    <meta charset='UTF-8'>
+    <title>Pathfinding Visualizer</title>
+    <link href='index.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'
+          integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1' crossorigin='anonymous'>
+</head>
+<body>
+    <div>
+        <div id='draggable-container'>
+            <div id='draggable'>
+                <div id='draggable-title'>Grid Settings</div>
+                <div id='x-button'>X</div>
+            </div>
+            <div id='draggable-content'>
+                <div id='settings-general'>
+                    <div class='draggable-content-title'>Algorithm Visualization</div>
+                    <label for='alg-visual-checkbox'>
+                        <input checked='checked' type='checkbox' name='visualization'
+                               value='Visualization' class='box' id='alg-visual-checkbox'>
+                        Show Visualization
+                    </label>
+                    <div class='slider-container'>
+                        <label for='speed-slider'></label>
+                        <div class='slider-text'>Speed: <div id='speed-text'> Medium </div></div>
+                        <input type='range' min='1' max='5' value='3' step='1' class='slider' id='speed-slider' list='step-list'>
+                        <datalist id='step-list'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </datalist>
+                    </div>
+                    <div class='draggable-content-title' id='width-title'>Grid Width</div>
+                    <div class='slider-container' id='width-container'>
+                        <label for='width-slider'></label>
+                        <div class='slider-text'><div id='width-text'> 75 </div></div>
+                        <input type='range' min='10' max='100' value='75' step='1' class='slider' id='width-slider'>
+                    </div>
+                    <div class='draggable-content-title'>Algorithm</div>
+                    <label for='diagonals-checkbox'>
+                        <input checked='checked' type='checkbox' name='navigation' value='Diagonals' class='box' id='diagonals-checkbox'>
+                        Allow Diagonals
+                    </label>
+                    <label for='bidirectional-checkbox' style='width: 300px;'>
+                        <input type='checkbox' name='bidirectional' value='Bidirectional' class='box' id='bidirectional-checkbox'>
+                        Bidirectional
+                    </label>
+                    <div class='draggable-content-title'>Heuristic</div>
+                    <div>
+                        <label for='manhattan' hidden>
+                            <input  type='radio' name='heuristic' value='Manhattan' class='box' id='manhattan'>
+                            Manhattan
+                        </label>
+                        <label for='euclidean'>
+                            <input checked='checked' type='radio' name='heuristic' value='Euclidean' class='box' id='euclidean'>
+                            Euclidean
+                        </label>
+                    </div>
+                    <div>
+                        <label for='chebyshev' hidden>
+                            <input type='radio' name='heuristic' value='Chebyshev' class='box' id='chebyshev'>
+                            Chebyshev
+                        </label>
+                        <label for='octile'hidden>
+                            <input type='radio' name='heuristic' value='Octile' class='box' id='octile'>
+                            Octile
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id='topbar' class='navbar navbar-expand-sm top-navbar'>
+            <a  target=”_blank” class='title'>
+                Pathfinding Visualizer
+            </a>
+            <div class='top-container'>
+                <div id='alg-drop-down' class='drop-down don'>
+                    <div id='alg-drop-down-button' class='drop-down-button'>
+                        <span id='alg-drop-down-text' class='drop-down-text'> A* Search </span>
+                        <span id = 'alg-arr' class='arrowUp'></span>
+                    </div>
+                    <div id='alg-drop-down-content' class='drop-down-content'>
+                        <div id='a*'>A* Search</div>
+                        <div id='dijkstra'hidden>Dijkstra's Algorithm</div>
+                        <div id='best-first' hidden>Best First Search</div>
+                        <div id='bfs'>Breadth First Search</div>
+                        <div id='dfs' hidden>Depth First Search</div>
+                    </div>
+                </div>
+                <button class='button green-button' id='go-button'>
+                    Visualize!
+                </button>
+                <div id='clr-drop-down' class='drop-down'>
+                    <div id='clr-drop-down-button' class='drop-down-button'>
+                        <span id='clr-drop-down-text' class='drop-down-text'>Clear Grid</span>
+                        <span id = 'clr-arr' class='arrowUpW'></span>
+                    </div>
+                    <div id='clr-drop-down-content' class='drop-down-content'>
+                        <div id='clr-path'>Clear Path</div>
+                        <div id='clr-tiles'>Clear Tiles</div>
+                    </div>
+                </div>
+                <button class='button' id='maze-button'>
+                    Maze
+                </button>
+                <button class='button' id='settings-button'>
+                    Settings
+                </button>
+            </div>
+        </div>
+        <div id='info-margin' class='info-margin'>
+            <div id='len' class='info-text'>Length: 0</div>
+            <div id='time' class='info-text'>Time: 0 ms</div>
+        </div>
+        <div id='bg'></div>
+        <div id='grid'></div>
+        <svg xmlns='http://www.w3.org/2000/svg' id='svg'></svg>
+    </div>
+    <script src='index.js'></script>
+</body>
+</html>
